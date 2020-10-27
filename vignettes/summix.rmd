@@ -1,0 +1,176 @@
+---
+title:  "Summix: estimating and adjusting for ancestry in genetic summary data"
+author: 
+      - Audrey Hendricks, audrey.hendricks@ucdenver.edu
+      - Gregory Matesi, gregory.matesi@ucdenver.edu 
+date: "November 1, 2020"
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+    number_sections: true
+    ##theme: lumen
+vignette: >
+  %\VignetteIndexEntry{Summix: estimating and adjusting for ancestry in genetic summary data} 
+  %\VignetteEngine{knitr::rmarkdown} 
+  %\usepackage[utf8]{inputenc}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+<style type="text/css">
+
+h1.title {
+  font-size: 38px;
+  color: Black;
+  text-align: center;
+}
+h4.author { /* Header 4 - and the author and data headers use this too  */
+    font-size: 18px;
+  ##font-family: "Times New Roman", Times, serif;
+  color: Black;
+  text-align: center;
+}
+
+h4.date { /* Header 4 - and the author and data headers use this too  */
+  font-size: 18px;
+  ##font-family: "Times New Roman", Times, serif;
+  color: Black;
+  text-align: center;
+}
+
+div#TOC li {
+    list-style:none;
+    background-image:none;
+    background-repeat:none;
+    background-position:0; 
+}
+</style>
+
+# Introduction
+Hidden heterogeneity (such as ancestry) within genetic summary data can lead to confounding in association testing or inaccurate prioritization of putative variants. Here, we provide Summix, a method to estimate and adjust for reference ancestry groups within genetic allele frequency data. This method was developed by the Summix team at the University of Colorado Denver and is headed by Dr Audrey Hendricks.
+
+*References* Cite the Summix paper
+
+# Summix
+Function to estimate reference ancestry proportions in heterogeneous genetic data. 
+
+## SLSQP 
+The Summix function uses the slsqp() function in the nloptr package to run Sequential Quadratic Programming. https://www.rdocumentation.org/packages/nloptr/versions/1.2.2.2/topics/slsqp
+
+
+## Usage
+
+```r
+summix(data, reference, observed, pi.start)
+```
+
+### Arguments
+
+**data**
+Data frame of the observed and reference allele frequencies for N genetic variants. See data formatting document at https://github.com/hendriau/Summix for more information
+  
+**reference**
+Character vector of the column names for the reference ancestries.
+    
+**observed**
+Column name of the heterogeneous observed ancestry as a character string,
+    
+**pi.start** Numeric vector of length K of the starting guess for the ancestry proportions. If not specified, this defaults to 1/K where K is the number of reference ancestry groups.
+
+### Details
+Estimates the proportion of each reference ancestry within the chosen observed group
+
+### Value
+
+Data frame with components:
+
+| **objective**   Least Squares value at solution
+|
+| **iterations**  Number of iterations
+|
+| **time**   Function run time in seconds
+|
+| **filtered**  Number of NA SNPs filtered out
+|
+| **K estimated proportions**   Total of K estimated ancestry proportions.
+
+
+
+## Example
+```{r eval=FALSE}
+library("summix")
+# load the data
+data("ancestryData")
+ 
+# Estimate 5 reference ancestry proportion values for the gnomAD African/African Amercian ancestry group
+summix( data = ancestryData, 
+      reference=c("ref_AF_afr_1000G", 
+          "ref_AF_eur_1000G", 
+          "ref_AF_sas_1000G", 
+          "ref_AF_iam_1000G", 
+          "ref_AF_eas_1000G"), 
+      observed="gnomad_AF_afr" )
+```
+
+# adjAF
+
+*Ancestry Adjusted Allele Frequency*
+Function to estimate ancestry adjusted allele frequencies given the proportion of reference ancestry groups.
+
+
+## Usage
+
+  ```r
+  adjAF(data, reference, observed, pi.target, pi.observed)
+  ```
+
+### Arguments
+
+**data** Data frame of unadjusted allele frequency for observed group, K-1 reference ancestry allele frequencies for N SNPs
+
+**reference**
+Character vector of the column names for K-1 reference ancestry groups. The name of the last reference ancestry group is not included as that group is not used to estimate the adjusted allele frequencies.
+
+**observed**
+Column name for the observed ancestry.
+
+**pi.observed**
+Numeric vector of the mixture proportions for K reference ancestry groups for the observed group. The order must match the order of the reference specified reference character vector with the last entry matching the missing ancestry reference group.
+  
+**pi.target**
+Numeric vector of the mixture proportions for K reference ancestry groups in the target sample or subject. Order must match the order of the specified reference character vector with the last entry matching the missing ancestry reference group.
+
+    
+### Details
+Estimates ancestry adjusted allele frequencies in an observed sample of allele frequencies given estimated reference ancestry proportions and the observed AFs for K-1 reference ancestry groups.
+
+### Value
+
+List with components:
+
+| **pi**   table of input reference ancestry groups, pi.observed values, and pi.target values
+|
+| **observed.data**  name of the data column for the observed group from which adjusted ancestry allele frequency is estimated
+|
+| **Nsnps**  number of SNPs for which adjusted AF is estimated
+|
+| **adjusted.AF**   data frame of original data with an appended column of adjusted allele frequencies
+
+
+
+## Example
+     
+```{r eval=FALSE}
+library("summix")
+data(ancestryData)
+
+head(ancestryData)
+
+tmp.aa<-adjAF(data   = ancestryData,
+     reference   = c("ref_AF_eur_1000G"),
+     observed    = "gnomad_AF_afr",
+     pi.target   = c(0, 1),
+     pi.observed = c(.15, .85))
+tmp.aa$adjusted.AF[1:5,]
+```
+

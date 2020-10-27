@@ -1,0 +1,18 @@
+Package: summix
+Version: 0.10
+Imports:
+    nloptr
+LazyData: true
+Title: Summix R Package
+Description: This package contains the Summix method for estimating and adjusting for ancestry in genetic summary allele frequency data.
+Authors@R: c(
+    person("Audrey", "Hendricks", email = "audrey.hendricks@ucdenver.edu", role = "cre"),
+    person("Matesi", "Gregory", email = "gregory.matesi@ucdenver.edu", role = "aut"))
+License: MIT + file LICENSE
+RoxygenNote: 7.1.1
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat (>= 2.1.0)
+VignetteBuilder: knitr
+Encoding: UTF-8
