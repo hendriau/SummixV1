@@ -2,7 +2,7 @@ Package: summix
 Version: 0.10
 Imports:
     nloptr
-LazyData: true
+LazyData: false
 Title: Summix R Package
 Description: This package contains the Summix method for estimating and adjusting for ancestry in genetic summary allele frequency data.
 Authors@R: c(
