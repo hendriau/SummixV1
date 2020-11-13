@@ -1,4 +1,4 @@
-Package: summix
+Package: Summix
 Version: 0.10
 Imports:
     nloptr
