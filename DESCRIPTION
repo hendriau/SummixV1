@@ -1,5 +1,5 @@
 Package: Summix
-Version: 0.10
+Version: 0.10.0
 Imports:
     nloptr
 LazyData: false
