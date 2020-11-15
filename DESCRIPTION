@@ -14,5 +14,6 @@ Suggests:
     knitr,
     rmarkdown,
     testthat (>= 2.1.0)
+biocViews:
 VignetteBuilder: knitr
 Encoding: UTF-8
