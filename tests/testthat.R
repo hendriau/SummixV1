@@ -1,4 +1,4 @@
 library(testthat)
-library(summix)
+library(Summix)
 
-test_check("summix")
+test_check("Summix")
