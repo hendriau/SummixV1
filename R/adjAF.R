@@ -69,10 +69,10 @@ adjAF <- function(
     stop("ERROR: Please make sure that you are only entering k-1 ancestries in reference.")
   }
 
-  if(class(data)!="data.frame"){
+  
+  if(!is(object = data, class2 = "data.frame")){
     stop("ERROR: data must be a data.frame as described in the vignette")
   }
-  
 
   if(typeof(observed)!="character"){
     stop("ERROR: please enter the column name of the observed ancestry")

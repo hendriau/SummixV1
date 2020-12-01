@@ -42,10 +42,10 @@
 
 summix = function(data, reference, observed, pi.start=c()){
   
-  if(class(data)!="data.frame"){
+  if(!is(object = data, class2 = "data.frame")){
     stop("ERROR: data must be a data.frame as described in the vignette")
   }
-  
+
   if(typeof(observed)!="character"){
     stop("ERROR: 'observed' must be a character string for the column name of the observed ancestry in data")
   }
