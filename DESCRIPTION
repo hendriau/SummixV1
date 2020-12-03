@@ -14,9 +14,6 @@ Suggests:
     knitr,
     rmarkdown,
     testthat (>= 2.1.0)
-biocViews:
-    StatisticalMethod
-    WholeGenome
-    Genetics
+biocViews: StatisticalMethod, WholeGenome, Genetics
 VignetteBuilder: knitr
 Encoding: UTF-8
