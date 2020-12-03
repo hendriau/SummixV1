@@ -60,9 +60,9 @@ The Summix function uses the slsqp() function in the nloptr package to run Seque
 
 ## Usage
 
-```{r}
-summix(data, reference, observed, pi.start)
-```
+  ```{r eval=FALSE}
+  summix(data, reference, observed, pi.start)
+  ```
 
 ### Arguments
 
@@ -120,7 +120,7 @@ Function to estimate ancestry adjusted allele frequencies given the proportion o
 
 ## Usage
 
-  ```{r}
+  ```{r eval=FALSE}
   adjAF(data, reference, observed, pi.target, pi.observed)
   ```
 
