@@ -60,7 +60,7 @@ The Summix function uses the slsqp() function in the nloptr package to run Seque
 
 ## Usage
 
-```r
+```{r}
 summix(data, reference, observed, pi.start)
 ```
 
@@ -97,7 +97,7 @@ Data frame with components:
 
 
 ## Example
-```{r eval=FALSE}
+```{r}
 library("summix")
 # load the data
 data("ancestryData")
@@ -120,7 +120,7 @@ Function to estimate ancestry adjusted allele frequencies given the proportion o
 
 ## Usage
 
-  ```r
+  ```{r}
   adjAF(data, reference, observed, pi.target, pi.observed)
   ```
 
@@ -160,7 +160,7 @@ List with components:
 
 ## Example
      
-```{r eval=FALSE}
+```{r}
 library("summix")
 data(ancestryData)
 
