@@ -178,7 +178,7 @@ List with components:
 ## Example
      
 ```{r}
-library("summix")
+library("Summix")
 data(ancestryData)
 
 head(ancestryData)
