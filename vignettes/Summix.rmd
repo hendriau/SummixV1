@@ -98,7 +98,7 @@ Data frame with components:
 
 ## Example
 ```{r}
-library("summix")
+library("Summix")
 # load the data
 data("ancestryData")
  
@@ -114,7 +114,7 @@ summix( data = ancestryData,
 
 ## Example
 ```{r}
-library("summix")
+library("Summix")
 # load the data
 data("ancestryData")
  
