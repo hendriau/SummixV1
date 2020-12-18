@@ -8,11 +8,13 @@ Authors@R: c(
     person("Matesi", "Gregory", email = "gregory.matesi@ucdenver.edu", role = "aut"))
 License: MIT + file LICENSE
 RoxygenNote: 7.1.1
-Suggests: 
-    knitr,
-    testthat (>= 2.1.0)
+Imports: nloptr
+Suggests: knitr, testthat (>= 2.1.0)
 biocViews: StatisticalMethod, WholeGenome, Genetics
 VignetteBuilder: knitr
 Encoding: UTF-8
-Imports: 
-    nloptr
+NeedsCompilation: no
+Packaged: 2020-12-18 23:32:10 UTC; audreyhendricks
+Author: Audrey Hendricks [cre],
+  Matesi Gregory [aut]
+Maintainer: Audrey Hendricks <audrey.hendricks@ucdenver.edu>
