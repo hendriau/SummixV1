@@ -8,7 +8,6 @@ Authors@R: c(
     person("Matesi", "Gregory", email = "gregory.matesi@ucdenver.edu", role = "aut"))
 License: MIT + file LICENSE
 RoxygenNote: 7.1.1
-Imports: nloptr
 Suggests: 
     knitr,
     rmarkdown,
