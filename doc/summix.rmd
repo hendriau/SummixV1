@@ -60,9 +60,9 @@ The Summix function uses the slsqp() function in the nloptr package to run Seque
 
 ## Usage
 
-```r
-summix(data, reference, observed, pi.start)
-```
+  ```{r eval=FALSE}
+  summix(data, reference, observed, pi.start)
+  ```
 
 ### Arguments
 
@@ -97,8 +97,8 @@ Data frame with components:
 
 
 ## Example
-```{r eval=FALSE}
-library("summix")
+```{r}
+library("Summix")
 # load the data
 data("ancestryData")
  
@@ -112,6 +112,23 @@ summix( data = ancestryData,
       observed="gnomad_AF_afr" )
 ```
 
+## Example
+```{r}
+library("Summix")
+# load the data
+data("ancestryData")
+ 
+# Estimate 5 reference ancestry proportion values for the gnomAD African/African Amercian ancestry group
+summix( data = ancestryData, 
+      reference=c("ref_AF_afr_1000G", 
+          "ref_AF_eur_1000G", 
+          "ref_AF_sas_1000G", 
+          "ref_AF_iam_1000G", 
+          "ref_AF_eas_1000G"), 
+      observed="gnomad_AF_afr",
+      pi.start = c(0.8, 0.1, 0.05, 0.02, 0.03))
+```
+
 # adjAF
 
 *Ancestry Adjusted Allele Frequency*
@@ -120,7 +137,7 @@ Function to estimate ancestry adjusted allele frequencies given the proportion o
 
 ## Usage
 
-  ```r
+  ```{r eval=FALSE}
   adjAF(data, reference, observed, pi.target, pi.observed)
   ```
 
@@ -160,8 +177,8 @@ List with components:
 
 ## Example
      
-```{r eval=FALSE}
-library("summix")
+```{r}
+library("Summix")
 data(ancestryData)
 
 head(ancestryData)
