@@ -16,3 +16,4 @@ VignetteBuilder: knitr
 Encoding: UTF-8
 Imports: 
     nloptr
+    REMOVEME
