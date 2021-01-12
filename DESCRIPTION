@@ -14,5 +14,7 @@ Suggests:
 biocViews: StatisticalMethod, WholeGenome, Genetics
 VignetteBuilder: knitr
 Encoding: UTF-8
+Depends:
+    R (>= 2.10)
 Imports: 
     nloptr
