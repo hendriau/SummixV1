@@ -17,4 +17,6 @@ Encoding: UTF-8
 Depends:
     R (>= 4.1)
 Imports: 
-    nloptr
+    nloptr,
+    methods
+BugReports: https://github.com/Bioconductor/Summix/issues

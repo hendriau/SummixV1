@@ -38,14 +38,13 @@
 #'
 #' @export
 #' @importFrom nloptr slsqp
+#' @importFrom methods is
 
 
 summix = function(data, reference, observed, pi.start=c()){
-  
   if(!is(object = data, class2 = "data.frame")){
     stop("ERROR: data must be a data.frame as described in the vignette")
   }
-
   if(typeof(observed)!="character"){
     stop("ERROR: 'observed' must be a character string for the column name of the observed ancestry in data")
   }
@@ -58,14 +57,12 @@ summix = function(data, reference, observed, pi.start=c()){
   if(all(reference %in% names(data))==FALSE){
     stop("ERROR: 'reference' must be a vector of column names from data to be used in the reference")
   }
-  
   # Filter NA allele frequencies out of the observed column
   filteredNA <- length(which(is.na(data[,observed]==TRUE)))
   # The math in the ancestr function only uses the 
   # observed allele frequency vector and the reference panel
   observed.b  <- as.data.frame( data[which(is.na(data[,observed])==FALSE),observed] )
   refmatrix <- as.data.frame( data[which(is.na(data[,observed])==FALSE),reference] )
-  
   # 
   if(length(pi.start) != 0){
     #########################
@@ -98,31 +95,17 @@ summix = function(data, reference, observed, pi.start=c()){
   # our current best guess for the ancestry proportion.
   # We then subtract the allele frequency values from the observed homogeneous population.
   # And finally this sum is squared to achieve a least squares form.
-  
   #########################
   fn.ancmix = function(x){
-    minfunc = 0
-    for (i in 1:ncol(refmatrix)){
-      minfunc = minfunc + x[i]*refmatrix[,i]
-    }
-    minfunc = minfunc - observed.b
-    minfunc = sum((minfunc)**2)
+    expected=x%*%t(as.matrix(refmatrix))
+    minfunc = sum((expected - observed.b)**2)
     return(minfunc)
   }
   ########################
-  
   # Here we are defining the gradient of the objective function.
   gr.ancmix <- function(x){
-    gradvec = matrix(0,ncol(refmatrix),1)
-    gradfunc = 0
-    for (i in 1:ncol(refmatrix)){
-      gradfunc = gradfunc + x[i]*refmatrix[,i]
-    }
-    gradfunc = gradfunc - observed.b
-    
-    for (i in 1:ncol(refmatrix)){
-      gradvec[i] = sum(2 * refmatrix[,i] * gradfunc)
-    }
+    gradfunc = x%*%t(as.matrix(refmatrix)) - observed.b
+    gradvec <- apply(2*refmatrix*t(gradfunc), 2, sum)
     return(gradvec)
   }
   
@@ -130,20 +113,15 @@ summix = function(data, reference, observed, pi.start=c()){
   # This function returns the equality constraints for the nloptr slsqp algorithm
   # We sum up the K current proportion estimate values and subtract 1. If the estimated proportion values sum to 1 than this value should equal zero.
   heq.ancmix = function(x){
-    equality = 0
-    for (i in 1:ncol(refmatrix)){
-      equality = equality + x[i]
-    }
+    equality = sum(x)
     return(equality - 1)
   }
   
   # H inequality
-  # This function returns a K vector of 
+  # This function returns a vector of size K
   hin.ancmix <- function(x){
     h = numeric(ncol(refmatrix))
-    for (i in 1:ncol(refmatrix)){
-      h[i] = x[i]
-    }
+    h=x
     return(h)
   }
   
@@ -178,8 +156,9 @@ summix = function(data, reference, observed, pi.start=c()){
   d[2] <- S$iter
   d[3] <- ttime
   d[4] <- filteredNA
-  for(i in 1:length(reference)){
-    d[4+i] <- S$par[i]
-  }
+  # for(i in 1:length(reference)){
+  #   d[4+i] <- S$par[i]
+  # }
+  d[5:(length(reference)+4)] <- S$par[1:length(reference)]
   return(d)
 }

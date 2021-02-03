@@ -51,6 +51,19 @@ Hidden heterogeneity (such as ancestry) within genetic summary data can lead to 
 
 *References* Cite the Summix paper
 
+# Installation
+
+```{r eval=FALSE}
+if(!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install("Summix")
+
+if(!requireNamespace("Summix")){
+    BiocManager::install("Summix")
+}
+suppressPackageStartupMessages(library(Summix)) 
+```
+
 # Summix
 Function to estimate reference ancestry proportions in heterogeneous genetic data. 
 
@@ -191,3 +204,8 @@ tmp.aa<-adjAF(data   = ancestryData,
 tmp.aa$adjusted.AF[1:5,]
 ```
 
+# sessionInfo()
+
+```{r sessionInfo}
+sessionInfo()
+```
