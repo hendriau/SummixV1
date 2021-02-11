@@ -49,7 +49,7 @@ div#TOC li {
 # Introduction
 Hidden heterogeneity (such as ancestry) within genetic summary data can lead to confounding in association testing or inaccurate prioritization of putative variants. Here, we provide Summix, a method to estimate and adjust for reference ancestry groups within genetic allele frequency data. This method was developed by the Summix team at the University of Colorado Denver and is headed by Dr Audrey Hendricks.
 
-*References* Cite the Summix paper
+*References* Arriaga-MacKenzie, I. S., Matesi, G., Chen, S., Ronco, A., Marker, K. M., Hall, J. R., … Hendricks, A. E. (2021). &lt;em&gt;Summix:&lt;/em&gt; A method for detecting and adjusting for population structure in genetic summary data. BioRxiv, 2021.02.03.429446. https://doi.org/10.1101/2021.02.03.429446
 
 # Installation
 
@@ -73,9 +73,7 @@ The Summix function uses the slsqp() function in the nloptr package to run Seque
 
 ## Usage
 
-  ```{r eval=FALSE}
-  summix(data, reference, observed, pi.start)
-  ```
+`summix(data, reference, observed, pi.start)`
 
 ### Arguments
 
@@ -150,9 +148,7 @@ Function to estimate ancestry adjusted allele frequencies given the proportion o
 
 ## Usage
 
-  ```{r eval=FALSE}
-  adjAF(data, reference, observed, pi.target, pi.observed)
-  ```
+`adjAF(data, reference, observed, pi.target, pi.observed)`
 
 ### Arguments
 
