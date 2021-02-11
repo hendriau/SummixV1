@@ -1,11 +1,10 @@
 #' Example allele frequency data
-#'
+#' 
 #' reference data is 1000 Genomes and NAM. 
-#' Observed data is from gnomAD:
-#' african/african american, 
-#' american/admixed latinx, 
-#' and other  
-#'
+#' 1000 Genomes data was downloaded from ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/ on May 31, 2018
+#' The IAM Affymetrix 6.0 data were downloaded from ftp.1000genomes.ebi.ac.uk/vol1/ftp/technical/working/20130711_native_american_admix_train (data accessed October 2018) and had been previously harmonized with the 1000 Genomes data.
+#' Observed data is from gnomAD. gnomAD v2 data was downloaded from https://gnomad.broadinstitute.org/downloads on Oct. 11, 2018 
+#' 
 #' @docType data
 #'
 #' @usage data(ancestryData)

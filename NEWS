@@ -1,1 +1,5 @@
 
+Changes in version 0.99.7 (2021-02-111)
+
+    Fixed multiple issues in review for development
+    No longer using for loops in function code
