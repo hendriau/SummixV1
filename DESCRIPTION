@@ -15,7 +15,7 @@ biocViews: StatisticalMethod, WholeGenome, Genetics
 VignetteBuilder: knitr
 Encoding: UTF-8
 Depends:
-    R (>= 4.1)
+    R (>= 4.0)
 Imports: 
     nloptr,
     methods
