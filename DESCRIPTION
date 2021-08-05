@@ -10,6 +10,7 @@ License: MIT + file LICENSE
 RoxygenNote: 7.1.1
 Suggests: 
     rmarkdown,
+    knitr,
     testthat (>= 2.1.0)
 biocViews: StatisticalMethod, WholeGenome, Genetics
 VignetteBuilder: knitr
