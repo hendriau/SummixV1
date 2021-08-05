@@ -8,7 +8,9 @@ Authors@R: c(
     person("Matesi", "Gregory", email = "gregory.matesi@ucdenver.edu", role = "aut"))
 License: MIT + file LICENSE
 RoxygenNote: 7.1.1
-Suggests: 
+Suggests:
+    rmarkdown,
+    markdown,
     knitr,
     testthat (>= 2.1.0)
 biocViews: StatisticalMethod, WholeGenome, Genetics
