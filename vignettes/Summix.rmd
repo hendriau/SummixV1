@@ -49,7 +49,8 @@ div#TOC li {
 # Introduction
 Hidden heterogeneity (such as ancestry) within genetic summary data can lead to confounding in association testing or inaccurate prioritization of putative variants. Here, we provide Summix, a method to estimate and adjust for reference ancestry groups within genetic allele frequency data. This method was developed by the Summix team at the University of Colorado Denver and is headed by Dr Audrey Hendricks.
 
-*References* Arriaga-MacKenzie, I. S., Matesi, G., Chen, S., Ronco, A., Marker, K. M., Hall, J. R., … Hendricks, A. E. (2021). &lt;em&gt;Summix:&lt;/em&gt; A method for detecting and adjusting for population structure in genetic summary data. BioRxiv, 2021.02.03.429446. https://doi.org/10.1101/2021.02.03.429446
+*References* Arriaga-MacKenzie IS, Matesi G, Chen S, Ronco A, Marker KM, Hall JR, Scherenberg R, Khajeh-Sharafabadi M, Wu Y, Gignoux CR, Null M, Hendricks AE (2021). Summix: A method for detecting and adjusting for population structure in genetic summary data. Am J Hum Genet 2021 108, 1270-1282. https://doi.org/10.1016/j.ajhg.2021.05.016
+
 
 # Installation
 
